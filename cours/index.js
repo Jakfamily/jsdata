@@ -201,19 +201,110 @@ arrayNumber.push(17); // ajoute un element au tableau a la fin
 //------------------
 //methode objet
 //------------------
-document.body.innerHTML = data
+// document.body.innerHTML = data
 
-  .filter((user) => user.name.includes("a"))
-  .sort((a, b) => a.age - b.age)
-  .map(
-    (user) =>
-      `
-<div class="user-card">
-  <h2>${user.name}</h2>
-  <p>age : ${user.age} ans</p>
-  <p>${user.techno}</p>
-  <p>Statuts : ${user.admin ? "Moderateur" : "menbre"}</p>
-</div>
-`
-  )
-  .join("");
+//   .filter((user) => user.name.includes("a"))
+//   .sort((a, b) => a.age - b.age)
+//   .map(
+//     (user) =>
+//       `
+// <div class="user-card">
+//   <h2>${user.name}</h2>
+//   <p>age : ${user.age} ans</p>
+//   <p>${user.techno}</p>
+//   <p>Statuts : ${user.admin ? "Moderateur" : "menbre"}</p>
+// </div>
+// `
+//   )
+//   .join("");
+
+//-------------
+//les dates
+//-------------
+
+//date classique
+let date = new Date();
+
+//timestamp
+let timestamp = Date.parse(date);
+// console.log(timestamp);
+
+// isostring
+let iso = date.toISOString();
+
+function dateParser(chaine) {
+  let newDate = new Date(chaine).toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+  return newDate;
+}
+// console.log(dateParser(date));
+// console.log(dateParser(timestamp));
+// console.log(dateParser(iso));
+
+//---------------
+// destructuring
+//--------------
+
+let moreData = {
+  destVar: ["element 1", "element 2", "element 3"],
+};
+
+const { destVar } = moreData;
+
+// console.log(moreData.destVar);
+// console.log(destVar);
+
+let array5 = [70, 80, 90];
+let [x, y, z] = array5;
+// console.log(x);
+// console.log(y);
+// console.log(z);
+
+const dateDestructuring = (chaine) => {
+  let newDate = chaine.split("T")[0];
+  let [y, m, d] = newDate.split("-");
+  return [d, m, y].join("/");
+};
+// console.log(dateDestructuring(iso));
+
+//------------
+//les datassets
+//------------
+
+const h3js = document.getElementById("javascript");
+h3js.style.color = "red";
+// console.log(h3js.dataset.lang);
+
+const h3 = document.querySelectorAll("h3");
+
+// h3.forEach((language) => {
+//   console.log(language.dataset.lang);
+// });
+
+//----------------
+//les regex
+//----------------
+
+let mail = "john.dupont@gmail.com";
+// console.log(mail.search(/@/));
+// console.log(mail.replace(/example/, "de"));
+// console.log(mail.match(/@/i));
+// console.log(mail.match(/[zug]/));
+// console.log(mail.match(/[50]/));
+
+//tous les chiffres
+// console.log(mail.match(/[\d]/));
+
+//matcher toutes les lettre
+// console.log(mail.match(/[a-z]/));
+
+// console.log(mail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i));
+
+let separor = 823675837789376536n;
+
+// console.log(separor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "));
